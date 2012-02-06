@@ -15,9 +15,28 @@
                 header.css("height","200px");
                 header.css("margin-top","200px");
                 $(window).scroll("199");
-                var computedStyle = getComputedStyle(header.get(0)).cssText;
+                var computedStyle = getComputedStyleCssText(header.get(0));
                 header.scrollfix();
-                equal(getComputedStyle(header.get(0)).cssText, computedStyle, "header should not be position fixed");
+                equal(getComputedStyleCssText(header.get(0)), computedStyle, "header should not be position fixed");
         });
 
 })(jQuery,window);
+
+
+function getComputedStyleCssText(element){
+        var cssObject = window.getComputedStyle(element),
+            prop,
+            cssText, 
+            cssAccumulator = [];
+
+        if(cssObject.cssText != ""){
+            return cssObject.cssText;
+        }
+
+        for(prop in cssObject){
+            if(typeof cssObject[prop] == "string"){
+                cssAccumulator.push(prop + " : " + cssObject[prop]);        
+            }
+        }
+        return cssAccumulator.join("; ");
+}

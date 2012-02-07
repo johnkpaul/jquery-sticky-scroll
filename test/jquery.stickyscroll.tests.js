@@ -1,13 +1,23 @@
 (function($,window, undefined){
-        module("scrollfix tests");
+        module("scrollfix tests",{
+            "teardown":function(){
+                $(window).scrollTop(0);
+                document.body.style.height = "auto";
+            }    
+        });
 
         test("scrollfix set position fixed if scrolled off the page", function(){
                 var header = $(".header");
                 header.scrollfix();
                 header.css("height","200px");
                 header.css("margin-top","200px");
-                $(window).scroll("201");
+                document.body.style.height="1000px";
+                $(window).scrollTop("201");
+                stop();
+                setTimeout(function(){
                 equal(header.css("position"), "fixed", "header is now position fixed");
+                start();
+                    },100);
         });
 
         test("scrollfix should not change css if element is not scrolled off page", function(){

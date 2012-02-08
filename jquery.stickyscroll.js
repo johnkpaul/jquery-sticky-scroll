@@ -11,7 +11,9 @@
                         $.fn.scrollfix.fixedItems.push($el);
                 });
         }
+
         $.fn.scrollfix.fixedItems = [];
+
         $(window).scroll(function(){
             $.fn.scrollfix.fixedItems.map(function($el){
                 var offset = $el.data("originalOffset");

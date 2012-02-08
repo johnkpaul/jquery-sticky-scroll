@@ -11,13 +11,13 @@
                 header.scrollfix();
                 header.css("height","200px");
                 header.css("margin-top","200px");
-                document.body.style.height="1000px";
-                $(window).scrollTop("201");
+                document.body.style.height="100000px";
+                $(window).scrollTop("202");
                 stop();
                 setTimeout(function(){
-                equal(header.css("position"), "fixed", "header is now position fixed");
-                start();
-                    },100);
+                        equal(header.css("position"), "fixed", "header is now position fixed");
+                        start();
+                },100);
         });
 
         test("scrollfix should not change css if element is not scrolled off page", function(){

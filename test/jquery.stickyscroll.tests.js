@@ -25,12 +25,15 @@
                 },100);
         });
 
-        test("scrollfix should not change css if element is not scrolled off page", function(){
-                var header = $(".header");
-                $(window).scrollTop(199);
+        asyncTest("scrollfix should not change css if element is not scrolled off page", function(){
                 var computedStyle = getComputedStyleCssText(this.header.get(0));
                 this.header.scrollfix();
-                equal(getComputedStyleCssText(this.header.get(0)), computedStyle, "header should not be position fixed");
+                $(window).scrollTop(199);
+                var header = this.header;
+                setTimeout(function(){
+                        equal(getComputedStyleCssText(header.get(0)), computedStyle, "header should not be position fixed");
+                        start();
+                },100);
         });
 
         asyncTest("scrollfix should return element to original state if scroll is returned to original", function(){

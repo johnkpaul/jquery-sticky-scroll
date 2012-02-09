@@ -20,7 +20,7 @@
             $.fn.scrollfix.fixedItems.map(function($el){
                 var offset = $el.data("originalOffset");
                 var position = $el.data("originalPosition");
-                if($(window).scrollTop() > offset.top || $(window).scrollLeft() > offset.left){
+                if(elementIsOutsideViewport(offset)){
                         $el.css("position","fixed").css({
                                 "top":offset.top,
                                 "left":offset.left
@@ -35,4 +35,9 @@
             });
             
         });
+
+        function elementIsOutsideViewport(offset){
+                var $win = $(window);
+                return $win.scrollTop() > offset.top || $win.scrollLeft() > offset.left;
+        }
 })(jQuery,window);

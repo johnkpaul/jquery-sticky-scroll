@@ -2,7 +2,7 @@
 
         module("scrollfix tests",{
             "setup":function(){
-                this.header = $("<div class='header'></div>").appendTo(document.body)
+                this.header = $("<div class='header'></div>").prependTo(document.body)
                 .css("height","200px").css("margin-top","200px");
                 document.body.style.height="100000px";
             },
@@ -40,7 +40,6 @@
                 var computedStyle = getComputedStyleCssText(this.header.get(0));
                 this.header.scrollfix();
                 $(window).scrollTop(202);
-                        equal(this.header.css("position"), "fixed", "header is now position fixed");
                 var header = this.header;
                 setTimeout(function(){
                         $(window).scrollTop(0);

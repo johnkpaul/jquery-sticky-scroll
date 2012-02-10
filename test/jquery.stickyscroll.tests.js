@@ -5,6 +5,7 @@
                 this.header = $("<div class='header'></div>").prependTo(document.body)
                 .css("height","200px").css("margin-top","200px");
                 document.body.style.height="100000px";
+                this.originalOffset = this.header.offset();
             },
             "teardown":function(){
                 this.header.remove();
@@ -19,10 +20,14 @@
                 this.header.scrollfix();
                 $(window).scrollTop(202);
                 var header = this.header;
+                var originalOffset = this.originalOffset;
                 setTimeout(function(){
+                        equal(header.css("top"), "0px", "top is set to 0");
+                        equal(header.css("left"), originalOffset.left+"px", "left is set to the original offset left");
+                        equal(header.offset().top - $(window).scrollTop(),0, "header is on top of the screen");
                         equal(header.css("position"), "fixed", "header is now position fixed");
                         start();
-                },100);
+                },0);
         });
 
         asyncTest("scrollfix should not change css if element is not scrolled off page", function(){
@@ -33,7 +38,7 @@
                 setTimeout(function(){
                         equal(getComputedStyleCssText(header.get(0)), computedStyle, "header should not be position fixed");
                         start();
-                },100);
+                },0);
         });
 
         asyncTest("scrollfix should return element to original state if scroll is returned to original", function(){
@@ -46,8 +51,8 @@
                         setTimeout(function(){
                                 equal(getComputedStyleCssText(header.get(0)), computedStyle, "header should not be position fixed");
                                 start();
-                        },100);
-                },100);
+                        },0);
+                },0);
         });
 
 })(jQuery,window);

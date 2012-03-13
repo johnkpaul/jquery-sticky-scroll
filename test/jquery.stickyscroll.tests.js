@@ -1,6 +1,6 @@
 (function($,window, undefined){
 
-        module("sticky scroll tests",{
+        module("sticky scroll unit tests",{
             "setup":function(){
                 this.$el = $("<div></div>");
 
@@ -71,6 +71,42 @@
                 equals(this.$el.hasClass("scrolled-off"), false);
         });
 
+        module("sticky scroll integration tests",{
+            "setup":function(){
+                this.$el = $("<div class='test-yo'></div>");
+                this.$el.appendTo(document.body);
+
+                this.getStickyScrollPlugin = function($el){
+                        return $.data($el.get(0), "plugin_stickyScroll");
+                }
+
+            
+            },
+            "expandDocumentBody":function($el){
+                $(document.body).css("height","10000px");
+                
+            },
+            "shrinkDocumentBody":function($el){
+                $(document.body).css("height","auto");
+                
+            },
+            "teardown":function(){
+                this.$el.remove();
+            }    
+        });
+
+        asyncTest("using real browser events, scrolled-off class is added when el is out of viewport", function(){
+                this.expandDocumentBody(); 
+                this.$el.stickyScroll();
+                var self = this;
+                $(window).scrollTop(5000);
+                setTimeout(function(){
+                        equals(self.$el.hasClass("scrolled-off"), true);
+                        self.shrinkDocumentBody();
+                        start();
+                        
+                },0);
+        });
 })(window.jQuery,window);
 
 

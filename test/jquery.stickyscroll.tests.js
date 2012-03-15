@@ -8,19 +8,15 @@
                         return {left:100,top:100};
                 }
 
-                this.getStickyScrollPlugin = function($el){
+            },
+            "getStickyScrollPlugin":function($el){
                         return $.data($el.get(0), "plugin_stickyScroll");
-                }
-
-                this.setupSpies = function(){
-                        var plugin = this.getStickyScrollPlugin(this.$el);
+            },
+            "setupSpies":function($el){
+                        var plugin = this.getStickyScrollPlugin($el);
                         plugin.elementScrolledOff = sinon.spy();
                         plugin.elementScrolledOn = sinon.spy();
-                }
-            
-            },
-            "teardown":function(){
-            }    
+            }
         });
 
         test("sticky scroll default class is scrolled-off", function(){
@@ -38,7 +34,7 @@
         test("if element is scrolled off viewport, plugin elementScrolledOn method is called", function(){
                 this.$el.stickyScroll();
                 var plugin = this.getStickyScrollPlugin(this.$el);
-                this.setupSpies();
+                this.setupSpies(this.$el);
                 var event = jQuery.Event("scroll");
                 event.target = $({scrollTop:101});
                 $(window).trigger(event);
@@ -49,7 +45,7 @@
         test("if element is scrolled into viewport, plugin elementScrolledOff method is called", function(){
                 this.$el.stickyScroll();
                 var plugin = this.getStickyScrollPlugin(this.$el);
-                this.setupSpies();
+                this.setupSpies(this.$el);
                 var event = jQuery.Event("scroll");
                 event.target = $({scrollTop:99});
                 $(window).trigger(event);

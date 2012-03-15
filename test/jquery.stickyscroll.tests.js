@@ -31,7 +31,7 @@
         same(this.getStickyScrollPlugin(this.$el).options["class"], newClass);
     });
 
-    test("if element is scrolled off viewport, plugin elementScrolledOn method is called", function(){
+    test("if element is scrolled off viewport, plugin elementScrolledOff method is called", function(){
         this.$el.stickyScroll();
         var plugin = this.getStickyScrollPlugin(this.$el);
         this.setupSpies(this.$el);
@@ -42,7 +42,7 @@
         equals(plugin.elementScrolledOn.called, false);
     });
 
-    test("if element is scrolled into viewport, plugin elementScrolledOff method is called", function(){
+    test("if element is scrolled into viewport, plugin elementScrolledOn method is called", function(){
         this.$el.stickyScroll();
         var plugin = this.getStickyScrollPlugin(this.$el);
         this.setupSpies(this.$el);

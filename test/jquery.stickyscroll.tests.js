@@ -60,9 +60,10 @@
         equals(this.$el.hasClass("scrolled-off"), true);
     });
 
-    test("elementScrolledOn function remove class", function(){
+    test("elementScrolledOn function after elementScrolledOff removes class", function(){
         this.$el.stickyScroll();
         var plugin = this.getStickyScrollPlugin(this.$el);
+        plugin.elementScrolledOff();
         plugin.elementScrolledOn();
         equals(this.$el.hasClass("scrolled-off"), false);
     });

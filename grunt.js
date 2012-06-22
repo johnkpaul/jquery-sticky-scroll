@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     lint: {
-      files: ['grunt.js', 'jquery.stickyscroll.js' ,'lib/**/*.js', 'test/**/*.js']
+      files: ['grunt.js', 'jquery.stickyscroll.js', 'test/jquery.stickyscroll.tests.js']
     },
     qunit: {
       files: ['index.html']
@@ -28,7 +28,15 @@ module.exports = function(grunt) {
         browser: true
       },
       globals: {
-        jQuery: true
+        jQuery: true,
+        equals: true,
+        same: true,
+        test: true,
+        asyncTest: true,
+        module: true,
+        start: true,
+        stop: true,
+        sinon: true
       }
     }
   });

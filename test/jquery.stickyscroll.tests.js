@@ -6,7 +6,7 @@
 
             this.$el.get(0).getBoundingClientRect = function(){
                 return {left:100,top:100};
-            }
+            };
 
         },
         "getStickyScrollPlugin":function($el){
@@ -75,7 +75,7 @@
 
             this.getStickyScrollPlugin = function($el){
                 return $.data($el.get(0), "plugin_stickyScroll");
-            }
+            };
 
 
         },
@@ -104,6 +104,4 @@
 
         },0);
     });
-})(window.jQuery,window);
-
-
+}(window.jQuery,window));

@@ -3,7 +3,7 @@
     var pluginName = "stickyScroll",
     defaults = {
         "class":"scrolled-off"
-    }
+    };
 
     function Plugin( element, options ) {
         this.element = element;
@@ -26,15 +26,15 @@
             }
         });
 
-    }
+    };
 
     Plugin.prototype.elementScrolledOn = function(){
         $(this.element).removeClass(this.options["class"]);        
-    }
+    };
 
     Plugin.prototype.elementScrolledOff = function(){
         $(this.element).addClass(this.options["class"]);        
-    }
+    };
 
     $.fn.stickyScroll = function(options){
         return this.each(function(){
@@ -43,11 +43,11 @@
                     new Plugin( this, options ));
             }        
         });
-    }
+    };
 
     function elementIsOutsideViewport(viewport,offset){
         var $viewport = $(viewport);
         return $viewport.scrollTop() > offset.top || $viewport.scrollLeft() > offset.left;
     }
 
-})(window.jQuery,window)
+}(window.jQuery,window));
